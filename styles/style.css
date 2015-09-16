@@ -439,7 +439,7 @@ th {
 
 p {
   margin:0;
-  font-family: sans-serif;
+  font-family: fantasy;
 } 
 
 #clock {
@@ -449,7 +449,6 @@ p {
   left: 50%;
   transform: translate(-50%,-50%);
   font-size: 70px;
-  font-family: Arial;
   opacity:1;
 }
 
