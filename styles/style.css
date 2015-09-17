@@ -439,7 +439,7 @@ th {
 
 p {
   margin:0;
-  font-family: sans-serif;
+  font-family: fantasy;
 } 
 
 #clock {
@@ -453,9 +453,9 @@ p {
   opacity:1;
 }
 
-#clock:hover {
+/*#clock:hover {
   opacity:0;
-}
+}*/
 
 
 #hexCode {
@@ -464,13 +464,16 @@ p {
   left: 50%;
   transform: translate(-50%,-50%);
   font-size: 70px;
-  font-family: Arial;
-  visibility: hidden;
+  color: blue;
+  font-family: fantasy;
+  opacity: 0;
 }
 
-/*#hexCode:hover {
+#hexCode:hover {
   visibility: visible;
-}*/
+  opacity:1;
+  transition: opacity 1s ease-in;
+}
 
 #progressbar {
   position: absolute;
@@ -479,6 +482,7 @@ p {
   top: 60%;
   left: 50%;
   transform: translate(-50%,-50%);
+  transition: 1s ease-in;
   border-top: 4px solid black;
 }
 

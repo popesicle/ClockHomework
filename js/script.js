@@ -2,16 +2,14 @@ window.onload = function() {
 
 	console.log("In we go!")
 
-	var randomNumber = function(a,b) {
-		return Math.floor(a + Math.random() * (b-a+1))
-	}
-
-	var randBGround = randomNumber(0,16777215).toString(16)	
-		//generates a random interger and turns it into a hex color code for HTML
 		
 	var clockTime = document.getElementById("displaytime");
 		// names the clocktime variable as the displaytime CSS id
 
+	var bGroundColor = document.getElementById("clockbackground")
+	// Sets the bgroundColor variable for the CSS ID clockbackground
+	
+	var hexColor = ""
 
 	var getTime = function(){
 		var theTime = new Date();
@@ -27,40 +25,33 @@ window.onload = function() {
 	    var currentTime = (hours + ":" + minutes + ":" + seconds)	
     	// function above pulls the time and spits it out in a 00:00:00 format.
     	clockTime.innerHTML=currentTime;
-    	
+    	// displays the time.
     }
+
+    var getHex = function(){
+    	var color = new Date();
+	    var hex1 = color.getHours()
+	    	if(hex1 < 10) hex1= "0" + hex1;
+	    var hex2 = color.getMinutes()
+	    	if(hex2 < 10) hex2 = "0" + hex2;
+		var hex3 = color.getSeconds()
+	    	if(hex3 < 10) hex3 = "0" + hex3;
+	    hexColor = hex1.toString(16)+hex2.toString(16)+hex3.toString(16)
+    		if(hexColor.length <= 5) hexColor = hexColor + "0"
+    		if(hexColor.length <= 4) hexColor = "0" + hexColor + "0"
+    		if(hexColor.length <= 3) hexColor = "10" + hexColor + "0"
+    	bGroundColor.style.background = "radial-gradient( #ffffff," + "#" + hexColor+ ")"		
+    }	
 
 	getTime();
 	// invokes the getTime() function starting the clock
+	getHex();
+
+	setInterval(getHex, 1000)
 	
 	setInterval(getTime, 1000)
     // invokes the getTime() function in intervals of 1 second.
     
-    var hexCode = document.getElementById("hexCode")
-    // Sets the hexCode variable for the CSS id hexCode
-	var bGroundColor = document.getElementById("clockbackground")
-	// Sets the bgroundColor variable for the CSS ID clockbackground
-
-	var split = function(str,num){
-    	var array = [];
-
-    	for (var i = 0; i < str.length; i += num){
-    
-        array.push(str.substr(i, num));
-        // .substr pulls part of the string, starting from the first value and 
-        // pulling everything up to and including the last value.
-    }
-    return array
-	}
-	// simple split function that splits up a string every nth character and pushes 
-	// it to a new array.
-	
-	var result = split(randBGround, 2)
-	 	hex1 = result[0].toUpperCase()
-	 	hex2 = result[1].toUpperCase()
-	 	hex3 = result[2].toUpperCase()
-	 	// Splits up my hex color code so I can format it all pretty like.
-		// Also capitlizing every pair in my hex.
 
 	var wide = 10;
 		divGrow = setInterval(function () {
@@ -75,10 +66,8 @@ window.onload = function() {
     }, 1000);
 
 
-    bGroundColor.style.background = "radial-gradient( #ffffff," + "#" + randBGround+ ")"
-	
-	hexCode.innerHTML = hex1 + ":" + hex2 + ":" + hex3
 
+	
 	
 }
 
